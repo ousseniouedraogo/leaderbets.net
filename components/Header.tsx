@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import logo from '../assets/logo bets.png';
+import logo from '../assets/logo bets.webp';
 import { Page } from '../types';
 
 interface HeaderProps {

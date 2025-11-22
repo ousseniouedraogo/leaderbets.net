@@ -9,9 +9,9 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
     const socialLinks = [
-        { name: 'Facebook', link: 'https://www.facebook.com/profile.php?id=61583565164575', img: '/assets/facebook.jpg' },
-        { name: 'YouTube', link: '#', img: '/assets/youtube%20.jpg' },
-        { name: 'Telegram', link: '#', img: '/assets/telegramme.jpg' },
+        { name: 'Facebook', link: 'https://www.facebook.com/profile.php?id=61583565164575', img: '/assets/facebook.webp' },
+        { name: 'YouTube', link: '#', img: '/assets/youtube%20.webp' },
+        { name: 'Telegram', link: '#', img: '/assets/telegramme.webp' },
     ];
     
     return (
