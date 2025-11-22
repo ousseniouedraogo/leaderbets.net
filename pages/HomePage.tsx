@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { BOOKMAKERS, GAMES } from '../constants';
 import BookmakerCard from '../components/BookmakerCard';
@@ -6,6 +5,7 @@ import OfferSlider from '../components/OfferSlider';
 import { Page, LiveScoreEvent, Game } from '../types';
 import { RichPrediction } from '../types.prediction';
 import { MOCK_PREDICTIONS } from '../data/predictions';
+import { usePageMetadata } from '../hooks/usePageMetadata';
 
 interface HomePageProps {
   setCurrentPage: (page: Page) => void;
@@ -273,6 +273,7 @@ const FeaturedGames: React.FC<{ setCurrentPage: (page: Page) => void }> = ({ set
 
 const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
   const featuredBookmakers = BOOKMAKERS.slice(0, 4);
+  usePageMetadata('Leaderbets.bet - Meilleurs Codes Promo & Bonus Bookmakers', 'Découvrez les meilleurs codes promo et bonus des bookmakers. Leaderbets.bet vous offre des analyses, pronostics et guides pour optimiser vos paris sportifs.');
 
   return (
     <div className="space-y-12">
@@ -289,7 +290,7 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
       
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">Nos Bookmakers Partenaires</h2>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900">Nos Bookmakers Partenaires</h1>
             <p className="mt-2 text-lg text-gray-600">Les meilleures offres et bonus, sélectionnés pour vous.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

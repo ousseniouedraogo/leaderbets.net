@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { RichPrediction, PredictionStatus } from '../types.prediction';
 import { MOCK_PREDICTIONS } from '../data/predictions';
+import { usePageMetadata } from '../hooks/usePageMetadata';
 
 const getUniqueDates = (preds: RichPrediction[]) =>
     Array.from(new Set(preds.map(p => p.date))).sort();
@@ -17,6 +17,8 @@ const PredictionsPage: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState(defaultDate);
     const dates = getUniqueDates(MOCK_PREDICTIONS);
     const predictions = MOCK_PREDICTIONS.filter(p => p.date === selectedDate);
+
+    usePageMetadata('Pronostics Sportifs | Leaderbets.bet', 'Consultez nos pronostics sportifs quotidiens. Analyses, cotes et conseils pour vous aider à parier sur vos sports préférés.');
 
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">

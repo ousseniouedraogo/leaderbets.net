@@ -2,6 +2,7 @@
 import React from 'react';
 import { BOOKMAKERS } from '../constants';
 import { Bookmaker } from '../types';
+import { usePageMetadata } from '../hooks/usePageMetadata';
 
 // --- DATA SPECIFIQUE AU COMPARATEUR (SELON DEMANDE) ---
 const COMPARATOR_DATA = [
@@ -176,6 +177,8 @@ const DetailedBookmakerCard: React.FC<{ bookmaker: Bookmaker }> = ({ bookmaker }
 
 
 const BookmakersPage: React.FC = () => {
+    usePageMetadata('Analyse des Bookmakers | Leaderbets.bet', 'Comparez les meilleurs bookmakers et leurs offres. Leaderbets.bet vous aide à choisir le site de paris sportifs idéal avec des analyses détaillées et des comparatifs.');
+
     return (
         <div className="py-12 bg-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

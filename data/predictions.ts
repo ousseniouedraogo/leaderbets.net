@@ -111,5 +111,3 @@ export const MOCK_PREDICTIONS: RichPrediction[] = [
         status: 'pending',
     },
 ];
-
-export default MOCK_PREDICTIONS;

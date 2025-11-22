@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from 'react';
 import { BOOKMAKERS } from '../constants';
 import { Bookmaker } from '../types';
+import { usePageMetadata } from '../hooks/usePageMetadata';
 
 const PromoCodeCard: React.FC<{ bookmaker: Bookmaker; id?: string }> = ({ bookmaker, id }) => {
     const [copied, setCopied] = useState(false);
@@ -72,6 +73,8 @@ const PromoCodeCard: React.FC<{ bookmaker: Bookmaker; id?: string }> = ({ bookma
 
 
 const PromoCodesPage: React.FC = () => {
+    usePageMetadata('Codes Promo & Bonus Bookmakers | Leaderbets.bet', 'Accédez aux meilleurs codes promo et bonus de bienvenue des bookmakers. Profitez d\'offres exclusives pour maximiser vos gains sur les paris sportifs.');
+
     return (
         <div className="py-12 bg-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

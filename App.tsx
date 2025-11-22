@@ -18,9 +18,11 @@ import Inscription1xbetPage from './pages/Inscription1xbetPage';
 import AboutPage from './pages/AboutPage';
 import LegalPage from './pages/LegalPage';
 import { Page } from './types';
+import { usePageMetadata } from './hooks/usePageMetadata';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>('Accueil');
+  usePageMetadata(currentPage, `Description for ${currentPage}`); // Placeholder description
 
   // Scroll to top whenever currentPage changes
   useEffect(() => {
