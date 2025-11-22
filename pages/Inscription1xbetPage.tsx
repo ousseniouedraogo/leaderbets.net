@@ -12,7 +12,7 @@ const Inscription1xbetPage: React.FC = () => {
             details: [
                 'Localisation : Burkina Faso',
                 'Une devise : XOF',
-                'Un code promo 1xbet Burkina : jackot77.'
+                'Un code promo 1xbet Burkina : 365LUX.'
             ]
         },
         {
@@ -20,7 +20,7 @@ const Inscription1xbetPage: React.FC = () => {
             details: [
                 'Numéro de téléphone : à valider grâce au code que le système enverra',
                 'Monnaie des transactions : XOF',
-                'Code promotionnel 1xbet : jockot77.'
+                'Code promotionnel 1xbet : 365LUX.'
             ]
         },
         {
@@ -29,7 +29,7 @@ const Inscription1xbetPage: React.FC = () => {
                 'Localisation',
                 'Courriel, téléphone, mot de passe',
                 'Nom',
-                'Code promotionnel au Burkina : jockot77.'
+                'Code promotionnel au Burkina : 365LUX.'
             ]
         },
         {
@@ -37,7 +37,7 @@ const Inscription1xbetPage: React.FC = () => {
             details: [
                 'Messagerie : Google, VK, Mail.ru, OK, Yandex, Telegram',
                 'Localisation',
-                'Code 1xbet promo : jockot77.'
+                'Code 1xbet promo : 365LUX.'
             ]
         }
     ];

@@ -1,57 +1,7 @@
 
 import React, { useState } from 'react';
 import { RichPrediction, PredictionStatus } from '../types.prediction';
-
-const MOCK_PREDICTIONS: RichPrediction[] = [
-    {
-        id: 1,
-        date: '2025-11-20',
-        time: '18:00',
-        sport: 'Football',
-        league: 'Premier League',
-        teamA: 'Liverpool',
-        teamB: 'Chelsea',
-        prediction: '1',
-        odds: 1.85,
-        status: 'won',
-    },
-    {
-        id: 2,
-        date: '2025-11-20',
-        time: '20:45',
-        sport: 'Football',
-        league: 'Ligue 1',
-        teamA: 'PSG',
-        teamB: 'Lyon',
-        prediction: '2',
-        odds: 4.50,
-        status: 'lost',
-    },
-    {
-        id: 3,
-        date: '2025-11-21',
-        time: '19:30',
-        sport: 'Basketball',
-        league: 'NBA',
-        teamA: 'Lakers',
-        teamB: 'Warriors',
-        prediction: 'V1',
-        odds: 1.60,
-        status: 'pending',
-    },
-    {
-        id: 4,
-        date: '2025-11-21',
-        time: '21:00',
-        sport: 'Football',
-        league: 'La Liga',
-        teamA: 'Real Madrid',
-        teamB: 'Barcelone',
-        prediction: 'Les deux marquent',
-        odds: 1.90,
-        status: 'pending',
-    },
-];
+import { MOCK_PREDICTIONS } from '../data/predictions';
 
 const getUniqueDates = (preds: RichPrediction[]) =>
     Array.from(new Set(preds.map(p => p.date))).sort();
@@ -63,7 +13,8 @@ const statusBadge = (status: PredictionStatus) => {
 };
 
 const PredictionsPage: React.FC = () => {
-    const [selectedDate, setSelectedDate] = useState(getUniqueDates(MOCK_PREDICTIONS)[0]);
+    const defaultDate = '2025-11-22';
+    const [selectedDate, setSelectedDate] = useState(defaultDate);
     const dates = getUniqueDates(MOCK_PREDICTIONS);
     const predictions = MOCK_PREDICTIONS.filter(p => p.date === selectedDate);
 
@@ -103,9 +54,14 @@ const PredictionsPage: React.FC = () => {
                                 <div className="text-sm text-gray-300 mb-1">Pronostic :</div>
                                 <div className="text-xl font-bold text-amber-400 mb-1">{pred.prediction}</div>
                                 <div className="text-sm text-gray-300">Cote : <span className="font-bold text-white">{pred.odds}</span></div>
-                                <button className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors shadow">
+                                <a
+                                    href="https://refpa58144.com/L?tag=d_1311185m_1599c_&site=1311185&ad=1599"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors shadow text-center"
+                                >
                                     Placer un pari maintenant
-                                </button>
+                                </a>
                             </div>
                         </div>
                     ))

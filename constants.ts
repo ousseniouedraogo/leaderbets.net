@@ -6,7 +6,7 @@ export const BOOKMAKERS: Bookmaker[] = [
     name: '1XBET',
     logo: '/assets/1xbet_logo.png',
     bonus: '200% jusqu\'à 130 000 XOF',
-    promoCode: 'jackot77',
+    promoCode: '365LUX',
     signupLink: 'https://refpa58144.com/L?tag=d_1311185m_1599c_&site=1311185&ad=1599',
     appLink: 'https://refpa58144.com/L?tag=d_1311185m_4129c_&site=1311185&ad=4129',
     popular: true,
@@ -38,7 +38,7 @@ export const BOOKMAKERS: Bookmaker[] = [
     name: 'Betwinner',
     logo: '/assets/betwinner_logo.png',
     bonus: '100% jusqu\'à 65 000 XOF',
-    promoCode: 'jackpot77',
+    promoCode: 'JACKPOT77',
     signupLink: 'https://bwredir.com/2A91?extid=Fb&s1=https://www.facebook.com/?locale=fr_FR&checkpoint_src=any&p=%2Fregistration%2F',
     appLink: 'https://tinyurl.com/ycytaudu',
     popular: false,
@@ -76,7 +76,7 @@ export const OFFERS: Offer[] = [
         description: 'Inscrivez-vous avec notre code promo et triplez votre premier dépôt jusqu\'à 130 000 XOF!',
         endDate: new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000), // 3 days from now
         logo: '/assets/1xbet_logo.png',
-        promoCode: 'jackot77',
+        promoCode: '365LUX',
         link: 'https://refpa58144.com/L?tag=d_1311185m_1599c_&site=1311185&ad=1599'
     },
     {
@@ -103,7 +103,7 @@ export const OFFERS: Offer[] = [
         description: 'Une plateforme complète avec un bonus de bienvenue facile à débloquer.',
         endDate: new Date(new Date().getTime() + 4 * 24 * 60 * 60 * 1000), // 4 days from now
         logo: '/assets/betwinner_logo.png',
-        promoCode: 'jackpot77',
+        promoCode: 'JACKPOT77',
         link: 'https://bwredir.com/2A91?extid=Fb&s1=https://www.facebook.com/?locale=fr_FR&checkpoint_src=any&p=%2Fregistration%2F'
     }
 ];
@@ -152,7 +152,7 @@ export const GAMES: Game[] = [
     name: 'JetX',
     image: '/assets/jetx.png',
     description: "Pilotez votre jet, visez les étoiles et retirez vos gains avant l'explosion inévitable. Adrénaline garantie !",
-    playLink: '#',
+    playLink: 'https://lkzq.cc/65f1',
     bookmaker: '1win',
     logo: '/assets/1win_logo.jpg'
   },
@@ -168,7 +168,7 @@ export const GAMES: Game[] = [
     name: 'Lucky Jet',
     image: '/assets/Lucky%20jet.png',
     description: 'Enfilez votre jetpack et volez le plus haut possible. Un jeu de crash avec un personnage charismatique et des gains explosifs.',
-    playLink: '#',
+    playLink: 'https://lkpq.cc/5bed84',
     bookmaker: 'Betwinner',
     logo: '/assets/betwinner_logo.png'
   }

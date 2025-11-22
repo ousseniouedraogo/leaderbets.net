@@ -15,7 +15,7 @@ const GameCard: React.FC<{ game: Game }> = ({ game }) => {
             <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold text-white">{game.name}</h3>
                 <p className="mt-2 text-gray-400 text-sm flex-grow">{game.description}</p>
-                <a href={game.playLink} className="mt-4 w-full bg-green-500 text-white font-bold py-3 px-4 rounded-md hover:bg-green-600 transition-colors flex items-center justify-center">
+                <a href={game.playLink} target="_blank" rel="noopener noreferrer" className="mt-4 w-full bg-green-500 text-white font-bold py-3 px-4 rounded-md hover:bg-green-600 transition-colors flex items-center justify-center">
                     Jouer maintenant
                     <span className="material-icons ml-2">play_arrow</span>
                 </a>

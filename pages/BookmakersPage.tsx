@@ -8,7 +8,7 @@ const COMPARATOR_DATA = [
     {
         name: '1XBET',
         rating: '9.8/10',
-        title: "Bonus de bienvenue 130% jusqu'à 130€ - Code promo JBMAX",
+        title: "bienvenue 130% jusqu'à 130€ - Code promo 365LUX",
         pros: [
             "Large gamme de sports (plus de 50), paris en direct et streaming live gratuit.",
             "Support des cryptomonnaies (Bitcoin, Ethereum) pour dépôts/retraits rapides.",
@@ -21,7 +21,7 @@ const COMPARATOR_DATA = [
     {
         name: 'Betwinner',
         rating: '9.6/10',
-        title: "Bonus de bienvenue 100% jusqu'à 130€ - Code promo BCVIP",
+        title: "Bonus de bienvenue 100% jusqu'à 130€ - Code promo JACKPOT77",
         pros: [
             "Plus de 50 événements live par jour en football et autres sports.",
             "Interface intuitive et navigation rapide, idéale pour débutants et pros.",
@@ -34,7 +34,7 @@ const COMPARATOR_DATA = [
     {
         name: 'Melbet',
         rating: '9.5/10',
-        title: "Bonus de bienvenue 130% jusqu'à 130€ - Code promo BCVIP",
+        title: "Bonus de bienvenue 130% jusqu'à 130€ - Code promo LUX365",
         pros: [
             "Plus de 50 sports couverts, avec odds élevés et streaming live intégré.",
             "Expérience mobile optimisée, app dédiée pour Android/iOS.",
@@ -47,7 +47,7 @@ const COMPARATOR_DATA = [
     {
         name: '1win',
         rating: '9.9/10',
-        title: "Bonus de bienvenue 500% jusqu'à 2800$ sur 4 dépôts - Code promo JVIP",
+        title: "Bonus de bienvenue 500% jusqu'à 2800$ sur 4 dépôts - Code promo LUX365",
         pros: [
             "Bonus massif sur plusieurs dépôts, parfait pour maximiser les gains.",
             "Diffusion live de matchs et événements esports directement sur la plateforme.",

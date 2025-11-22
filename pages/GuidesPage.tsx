@@ -1217,7 +1217,7 @@ const GuidesPage: React.FC = () => {
                                 <span className="material-icons mr-2">vpn_key</span>
                                 Avantage de s'inscrire avec le code promo
                             </h3>
-                            <p className="text-gray-700 mb-4">En utilisant le code promo <span className="text-amber-600 font-bold text-lg">jackot77</span>, vous pouvez :</p>
+                            <p className="text-gray-700 mb-4">En utilisant le code promo <span className="text-amber-600 font-bold text-lg">365LUX</span>, vous pouvez :</p>
                             <ul className="space-y-2 text-gray-700">
                                 <li className="flex items-center"><span className="material-icons text-amber-500 mr-2">check_circle</span> Obtenir un bonus boosté (jusqu'à 130 % au lieu de 100 %)</li>
                                 <li className="flex items-center"><span className="material-icons text-amber-500 mr-2">check_circle</span> Accéder à des offres exclusives réservées aux nouveaux utilisateurs</li>
@@ -1226,7 +1226,7 @@ const GuidesPage: React.FC = () => {
                             
                             <div className="mt-6 flex flex-col sm:flex-row items-center gap-4 bg-white p-4 rounded-lg max-w-md mx-auto border border-gray-200 shadow-sm">
                                 <span className="text-gray-500 uppercase text-xs font-bold">Code Promo</span>
-                                <div className="text-3xl font-mono font-black text-amber-500 tracking-widest select-all">jackot77</div>
+                                <div className="text-3xl font-mono font-black text-amber-500 tracking-widest select-all">365LUX</div>
                             </div>
                         </div>
                     </section>
@@ -1244,7 +1244,7 @@ const GuidesPage: React.FC = () => {
                                 <li>Choisissez votre bonus de bienvenue (sport, casino ou sans bonus)</li>
                                 <li>Entrez votre numéro de téléphone</li>
                                 <li>Validez avec le code SMS reçu</li>
-                                <li>Renseignez le code promo <strong className="text-amber-600">jackot77</strong></li>
+                                <li>Renseignez le code promo <strong className="text-amber-600">365LUX</strong></li>
                                 <li>Cliquez sur <strong>S'inscrire</strong></li>
                                 <li>Effectuez votre premier dépôt et commencez à parier</li>
                             </ol>

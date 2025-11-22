@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { BOOKMAKERS, GAMES } from '../constants';
 import BookmakerCard from '../components/BookmakerCard';
 import OfferSlider from '../components/OfferSlider';
-import { Page, MatchPrediction, LiveScoreEvent, Game } from '../types';
+import { Page, LiveScoreEvent, Game } from '../types';
+import { RichPrediction } from '../types.prediction';
+import { MOCK_PREDICTIONS } from '../data/predictions';
 
 interface HomePageProps {
   setCurrentPage: (page: Page) => void;
@@ -140,45 +142,16 @@ const FeaturedNews: React.FC<{ setCurrentPage: (page: Page) => void }> = ({ setC
 };
 
 const FeaturedPredictions: React.FC<{ setCurrentPage: (page: Page) => void }> = ({ setCurrentPage }) => {
-    const [predictions, setPredictions] = useState<MatchPrediction[]>([]);
+    const [predictions, setPredictions] = useState<RichPrediction[]>([]);
     const [loading, setLoading] = useState(true);
-
-    // Données statiques simulées (Mock data)
-    const MOCK_PREDICTIONS: MatchPrediction[] = [
-        {
-            id: 101,
-            league: 'Premier League',
-            teamA: 'Liverpool',
-            teamB: 'Chelsea',
-            prediction: '1',
-            startDate: new Date().toISOString(),
-            odds: { '1': 1.85, 'X': 3.60, '2': 4.20 }
-        },
-        {
-            id: 102,
-            league: 'La Liga',
-            teamA: 'FC Barcelone',
-            teamB: 'Atlético Madrid',
-            prediction: 'X',
-            startDate: new Date().toISOString(),
-            odds: { '1': 2.10, 'X': 3.25, '2': 3.50 }
-        },
-        {
-            id: 103,
-            league: 'Serie A',
-            teamA: 'Juventus',
-            teamB: 'AC Milan',
-            prediction: '2',
-            startDate: new Date().toISOString(),
-            odds: { '1': 2.40, 'X': 3.10, '2': 2.95 }
-        }
-    ];
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setPredictions(MOCK_PREDICTIONS);
+            // Affiche les pronostics du 22/11/2025
+            const todays = MOCK_PREDICTIONS.filter(p => p.date === '2025-11-22').slice(0, 2);
+            setPredictions(todays);
             setLoading(false);
-        }, 500);
+        }, 300);
         return () => clearTimeout(timer);
     }, []);
 
@@ -193,14 +166,6 @@ const FeaturedPredictions: React.FC<{ setCurrentPage: (page: Page) => void }> = 
         };
         return map[prediction] || prediction;
     };
-    
-    const getPredictionOdd = (p: MatchPrediction) => {
-        const key = p.prediction.toUpperCase();
-        if (key === '1' || key === 'X' || key === '2') {
-            return p.odds[key as keyof typeof p.odds];
-        }
-        return null;
-    }
 
     const renderContent = () => {
         if (loading) {
@@ -217,31 +182,26 @@ const FeaturedPredictions: React.FC<{ setCurrentPage: (page: Page) => void }> = 
         }
 
         if (predictions.length === 0) {
-            return <p className="text-center text-gray-400">Aucun pronostic disponible pour le moment.</p>;
+            return <p className="text-center text-gray-400">Aucun pronostic pour aujourd'hui.</p>;
         }
 
         return (
             <div className="space-y-4">
-                {predictions.map(p => {
-                    const predictionOdd = getPredictionOdd(p);
-                    return (
-                        <div key={p.id} className="bg-slate-700 p-4 rounded-md flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                            <div className="flex-grow">
-                                <p className="text-xs text-gray-400">{p.league}</p>
-                                <p className="font-bold text-white">{p.teamA} vs {p.teamB}</p>
-                            </div>
-                            <div className="flex items-center mt-2 sm:mt-0 sm:ml-4 text-center sm:text-right">
-                                <span className="bg-blue-600 text-white text-xs font-semibold mr-4 px-2.5 py-1 rounded-full">{formatPrediction(p.prediction)}</span>
-                                {predictionOdd && (
-                                    <div className="flex flex-col items-center">
-                                        <span className="font-bold text-amber-400 text-xl">{predictionOdd.toFixed(2)}</span>
-                                        <span className="text-xs text-gray-400">Cote</span>
-                                    </div>
-                                )}
+                {predictions.map(p => (
+                    <div key={p.id} className="bg-slate-700 p-4 rounded-md flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div className="flex-grow">
+                            <p className="text-xs text-gray-400">{p.league} • {p.time}</p>
+                            <p className="font-bold text-white">{p.teamA} vs {p.teamB}</p>
+                        </div>
+                        <div className="flex items-center mt-2 sm:mt-0 sm:ml-4 text-center sm:text-right">
+                            <span className="bg-blue-600 text-white text-xs font-semibold mr-4 px-2.5 py-1 rounded-full">{formatPrediction(p.prediction)}</span>
+                            <div className="flex flex-col items-center">
+                                <span className="font-bold text-amber-400 text-xl">{p.odds.toFixed(2)}</span>
+                                <span className="text-xs text-gray-400">Cote</span>
                             </div>
                         </div>
-                    )
-                })}
+                    </div>
+                ))}
             </div>
         );
     };

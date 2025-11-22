@@ -8,6 +8,11 @@ import BookmakersPage from './pages/BookmakersPage';
 import PredictionsPage from './pages/PredictionsPage';
 import GuidesPage from './pages/GuidesPage';
 import NewsPage from './pages/NewsPage';
+import VARArticlePage from './pages/VARArticlePage';
+import FairPlayPremierLeaguePage from './pages/FairPlayPremierLeaguePage';
+import HakimiBallonDorPage from './pages/HakimiBallonDorPage';
+import MondialU17AfriquePage from './pages/MondialU17AfriquePage';
+import Ronaldo1000ButsPage from './pages/Ronaldo1000ButsPage';
 import GamesPage from './pages/GamesPage';
 import Inscription1xbetPage from './pages/Inscription1xbetPage';
 import AboutPage from './pages/AboutPage';
@@ -35,7 +40,7 @@ const App: React.FC = () => {
       case 'Guide et astuces':
         return <GuidesPage />;
       case 'Actualité':
-        return <NewsPage />;
+        return <NewsPage setCurrentPage={setCurrentPage} />;
       case 'JEUX':
         return <GamesPage />;
       case 'Inscription 1xbet':
@@ -44,6 +49,16 @@ const App: React.FC = () => {
         return <AboutPage />;
       case 'Mentions légales':
         return <LegalPage />;
+      case 'VAR':
+        return <VARArticlePage />;
+      case 'FairPlayPremierLeague':
+        return <FairPlayPremierLeaguePage />;
+      case 'HakimiBallonDor':
+        return <HakimiBallonDorPage />;
+      case 'MondialU17Afrique':
+        return <MondialU17AfriquePage />;
+      case 'Ronaldo1000Buts':
+        return <Ronaldo1000ButsPage />;
       default:
         return <HomePage setCurrentPage={setCurrentPage} />;
     }

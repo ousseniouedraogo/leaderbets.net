@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import logo from '../assets/logo bets.png';
 import { Page } from '../types';
 
 interface HeaderProps {
@@ -44,9 +45,10 @@ const Header: React.FC<HeaderProps> = ({ currentPage, setCurrentPage }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div 
-            className="flex-shrink-0 cursor-pointer" 
+            className="flex-shrink-0 flex items-center gap-2 cursor-pointer" 
             onClick={() => setCurrentPage('Accueil')}
           >
+            <img src={logo} alt="Logo Leaderbets" className="h-10 w-auto mr-2 rounded" style={{objectFit: 'contain'}} />
             <h1 className="text-2xl font-black text-white hover:opacity-90 transition-opacity">
               Leader<span className="text-amber-400">bets</span>
             </h1>

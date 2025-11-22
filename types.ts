@@ -1,5 +1,5 @@
 
-export type Page = 'Accueil' | 'Codes promos' | 'Bookmakers' | 'Pronostics' | 'Guide et astuces' | 'Actualité' | 'JEUX' | 'Inscription 1xbet' | 'A propos' | 'Mentions légales';
+export type Page = 'Accueil' | 'Codes promos' | 'Bookmakers' | 'Pronostics' | 'Guide et astuces' | 'Actualité' | 'JEUX' | 'Inscription 1xbet' | 'A propos' | 'Mentions légales' | 'VAR' | 'FairPlayPremierLeague' | 'HakimiBallonDor' | 'MondialU17Afrique' | 'Ronaldo1000Buts';
 
 export interface Bookmaker {
   name: string;

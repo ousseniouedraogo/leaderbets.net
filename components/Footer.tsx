@@ -9,7 +9,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
     const socialLinks = [
-        { name: 'Facebook', link: '#', img: '/assets/facebook.jpg' },
+        { name: 'Facebook', link: 'https://www.facebook.com/profile.php?id=61583565164575', img: '/assets/facebook.jpg' },
         { name: 'YouTube', link: '#', img: '/assets/youtube%20.jpg' },
         { name: 'Telegram', link: '#', img: '/assets/telegramme.jpg' },
     ];
@@ -102,7 +102,7 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
                         <h3 className="font-semibold text-white mb-4 uppercase">RETROUVEZ NOUS AUSSI SUR :</h3>
                         <div className="flex space-x-4">
                             {socialLinks.map(social => (
-                                <a key={social.name} href={social.link} aria-label={social.name} className="inline-block">
+                                <a key={social.name} href={social.link} aria-label={social.name} className="inline-block" target={social.name === 'Facebook' ? '_blank' : undefined} rel={social.name === 'Facebook' ? 'noopener noreferrer' : undefined}>
                                     <img src={social.img} alt={social.name + ' logo'} className="h-12 w-12 object-contain rounded-full border bg-white shadow" />
                                 </a>
                             ))}
