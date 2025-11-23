@@ -123,7 +123,7 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
 
                 {/* Copyright */}
                 <div className="mt-8 pt-6 text-center text-sm border-t border-slate-700">
-                    <p>&copy; {new Date().getFullYear()} Leaderbets.bet. Tous droits réservés.</p>
+                    <p>&copy; {new Date().getFullYear()} Leaderbets.net. Tous droits réservés.</p>
                 </div>
             </div>
         </footer>

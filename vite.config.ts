@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
       plugins: [
         react(),
         sitemap({
-          hostname: 'https://leaderbets.bet',
+          hostname: 'https://leaderbets.net',
           dynamicRoutes: [
             '/about', 
             '/bookmakers', 
