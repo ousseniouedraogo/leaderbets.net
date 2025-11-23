@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node optimize-images.cjs && vite build",
     "preview": "vite preview",
     "generate-sitemap": "mkdir -p dist && touch dist/robots.txt && vite build"
   },
