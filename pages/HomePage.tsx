@@ -15,7 +15,7 @@ const Livescore: React.FC = () => {
     const [scores, setScores] = useState<LiveScoreEvent[]>([]);
     const [loading, setLoading] = useState(true);
 
-    // Données statiques simulées (Mock data)
+    // Données statiques simulées (Mock data) comme secours
     const MOCK_SCORES: LiveScoreEvent[] = [
         {
             id: 1,
@@ -46,12 +46,59 @@ const Livescore: React.FC = () => {
     ];
 
     useEffect(() => {
-        // Simulation d'un chargement
-        const timer = setTimeout(() => {
-            setScores(MOCK_SCORES);
-            setLoading(false);
-        }, 500);
-        return () => clearTimeout(timer);
+        const fetchLiveScores = async () => {
+            if (scores.length === 0) setLoading(true);
+            
+            try {
+                const response = await fetch("https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=soccer&Timezone=-7", {
+                    method: "GET",
+                    headers: {
+                        'x-rapidapi-key': "e7db0c5837msh19e0407d95f4f8bp1a7118jsn5d3147325c4d",
+                        'x-rapidapi-host': "livescore6.p.rapidapi.com"
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                const mappedScores: LiveScoreEvent[] = [];
+
+                // L'API renvoie une structure avec Stages -> Events
+                if (data.Stages && Array.isArray(data.Stages)) {
+                    data.Stages.forEach((stage: any) => {
+                        if (stage.Events && Array.isArray(stage.Events)) {
+                            stage.Events.forEach((event: any) => {
+                                mappedScores.push({
+                                    id: Number(event.Eid),
+                                    homeTeam: { name: event.T1?.[0]?.Nm || 'Équipe 1' },
+                                    awayTeam: { name: event.T2?.[0]?.Nm || 'Équipe 2' },
+                                    homeScore: { current: parseInt(event.Tr1 || '0') },
+                                    awayScore: { current: parseInt(event.Tr2 || '0') },
+                                    status: { description: event.Eps || 'Live' },
+                                    time: { minute: undefined }
+                                });
+                            });
+                        }
+                    });
+                }
+                
+                setScores(mappedScores);
+                
+            } catch (error) {
+                console.error("Erreur lors de la récupération des scores:", error);
+                if (scores.length === 0) setScores(MOCK_SCORES);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchLiveScores();
+        
+        const intervalId = setInterval(fetchLiveScores, 60000);
+        return () => clearInterval(intervalId);
     }, []);
 
     const renderContent = () => {
@@ -74,7 +121,7 @@ const Livescore: React.FC = () => {
 
         return (
             <div className="space-y-3">
-                {scores.slice(0, 3).map(score => {
+                {scores.slice(0, 5).map(score => {
                     let timeDisplay = score.status.description;
                     if (timeDisplay.toLowerCase() === 'halftime') {
                         timeDisplay = 'MT';
@@ -100,7 +147,7 @@ const Livescore: React.FC = () => {
             <div className="flex justify-between items-center mb-4">
                  <h3 className="text-xl font-bold flex items-center text-white">
                     <span className="material-icons text-red-500 mr-2 animate-pulse">online_prediction</span>
-                    Livescores
+                    Livescores en Direct
                  </h3>
             </div>
             {renderContent()}
