@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => {
         host: '0.0.0.0',
       },
       publicDir: 'public',
+      appType: 'spa',
       build: {
         outDir: 'dist',
       },
@@ -48,8 +49,8 @@ export default defineConfig(({ mode }) => {
         })
       ],
       define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        'process.env.RAPIDAPI_KEY': JSON.stringify(env.RAPIDAPI_KEY)
       },
       resolve: {
         alias: {

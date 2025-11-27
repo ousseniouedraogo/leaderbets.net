@@ -1,5 +1,6 @@
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Page } from './types';
@@ -23,60 +24,35 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const LegalPage = lazy(() => import('./pages/LegalPage'));
 
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<Page>('Accueil');
+  const location = useLocation();
+  const currentPage = location.pathname.substring(1) as Page;
   usePageMetadata(currentPage, `Description for ${currentPage}`); // Placeholder description
-
-  // Scroll to top whenever currentPage changes
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPage]);
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'Accueil':
-        return <HomePage setCurrentPage={setCurrentPage} />;
-      case 'Codes promos':
-        return <PromoCodesPage />;
-      case 'Bookmakers':
-        return <BookmakersPage />;
-      case 'Pronostics':
-        return <PredictionsPage />;
-      case 'Guide et astuces':
-        return <GuidesPage />;
-      case 'Actualité':
-        return <NewsPage setCurrentPage={setCurrentPage} />;
-      case 'JEUX':
-        return <GamesPage />;
-      case 'Inscription 1xbet':
-        return <Inscription1xbetPage />;
-      case 'A propos':
-        return <AboutPage />;
-      case 'Mentions légales':
-        return <LegalPage />;
-      case 'VAR':
-        return <VARArticlePage />;
-      case 'FairPlayPremierLeague':
-        return <FairPlayPremierLeaguePage />;
-      case 'HakimiBallonDor':
-        return <HakimiBallonDorPage />;
-      case 'MondialU17Afrique':
-        return <MondialU17AfriquePage />;
-      case 'Ronaldo1000Buts':
-        return <Ronaldo1000ButsPage />;
-      default:
-        return <HomePage setCurrentPage={setCurrentPage} />;
-    }
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900">
-      <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Header />
       <main className="flex-grow">
         <Suspense fallback={<div>Loading...</div>}>
-          {renderPage()}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/codes-promos" element={<PromoCodesPage />} />
+            <Route path="/bookmakers" element={<BookmakersPage />} />
+            <Route path="/pronostics" element={<PredictionsPage />} />
+            <Route path="/guide-et-astuces" element={<GuidesPage />} />
+            <Route path="/actualite" element={<NewsPage />} />
+            <Route path="/jeux" element={<GamesPage />} />
+            <Route path="/inscription-1xbet" element={<Inscription1xbetPage />} />
+            <Route path="/a-propos" element={<AboutPage />} />
+            <Route path="/mentions-legales" element={<LegalPage />} />
+            <Route path="/var" element={<VARArticlePage />} />
+            <Route path="/fair-play-premier-league" element={<FairPlayPremierLeaguePage />} />
+            <Route path="/hakimi-ballon-dor" element={<HakimiBallonDorPage />} />
+            <Route path="/mondial-u17-afrique" element={<MondialU17AfriquePage />} />
+            <Route path="/ronaldo-1000-buts" element={<Ronaldo1000ButsPage />} />
+          </Routes>
         </Suspense>
       </main>
-      <Footer setCurrentPage={setCurrentPage} />
+      <Footer />
     </div>
   );
 };

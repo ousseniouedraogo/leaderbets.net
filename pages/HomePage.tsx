@@ -53,7 +53,7 @@ const Livescore: React.FC = () => {
                 const response = await fetch("https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=soccer&Timezone=-7", {
                     method: "GET",
                     headers: {
-                        'x-rapidapi-key': "e7db0c5837msh19e0407d95f4f8bp1a7118jsn5d3147325c4d",
+                        'x-rapidapi-key': process.env.RAPIDAPI_KEY,
                         'x-rapidapi-host': "livescore6.p.rapidapi.com"
                     }
                 });
