@@ -3,122 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { BOOKMAKERS, GAMES } from '../constants';
 import BookmakerCard from '../components/BookmakerCard';
 import OfferSlider from '../components/OfferSlider';
-import { LiveScoreEvent, Game } from '../types';
+import { Game } from '../types';
 import { RichPrediction } from '../types.prediction';
 import { MOCK_PREDICTIONS } from '../data/predictions';
 import { usePageMetadata } from '../hooks/usePageMetadata';
-
-const Livescore: React.FC = () => {
-    const [scores, setScores] = useState<LiveScoreEvent[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    const MOCK_SCORES: LiveScoreEvent[] = [
-        { id: 1, homeTeam: { name: 'Manchester City' }, awayTeam: { name: 'Arsenal' }, homeScore: { current: 2 }, awayScore: { current: 1 }, status: { description: "75'" }, time: { minute: 75 } },
-        { id: 2, homeTeam: { name: 'Real Madrid' }, awayTeam: { name: 'FC Barcelone' }, homeScore: { current: 1 }, awayScore: { current: 1 }, status: { description: "MT" } },
-        { id: 3, homeTeam: { name: 'PSG' }, awayTeam: { name: 'Marseille' }, homeScore: { current: 3 }, awayScore: { current: 0 }, status: { description: "88'" }, time: { minute: 88 } }
-    ];
-
-    useEffect(() => {
-        const fetchLiveScores = async () => {
-            if (scores.length === 0) setLoading(true);
-            try {
-                const response = await fetch("https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=soccer&Timezone=-7", {
-                    method: "GET",
-                    headers: {
-                        'x-rapidapi-key': process.env.RAPIDAPI_KEY!,
-                        'x-rapidapi-host': "livescore6.p.rapidapi.com"
-                    }
-                });
-                if (!response.ok) throw new Error(`API Error: ${response.status}`);
-                const data = await response.json();
-                const mappedScores: LiveScoreEvent[] = [];
-                if (data.Stages && Array.isArray(data.Stages)) {
-                    data.Stages.forEach((stage: any) => {
-                        if (stage.Events && Array.isArray(stage.Events)) {
-                            stage.Events.forEach((event: any) => {
-                                mappedScores.push({
-                                    id: Number(event.Eid),
-                                    homeTeam: { name: event.T1?.[0]?.Nm || 'Équipe 1' },
-                                    awayTeam: { name: event.T2?.[0]?.Nm || 'Équipe 2' },
-                                    homeScore: { current: parseInt(event.Tr1 || '0') },
-                                    awayScore: { current: parseInt(event.Tr2 || '0') },
-                                    status: { description: event.Eps || 'Live' },
-                                    time: { minute: undefined }
-                                });
-                            });
-                        }
-                    });
-                }
-                setScores(mappedScores);
-            } catch (error) {
-                console.error("Erreur lors de la récupération des scores:", error);
-                if (scores.length === 0) setScores(MOCK_SCORES);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchLiveScores();
-        const intervalId = setInterval(fetchLiveScores, 60000);
-        return () => clearInterval(intervalId);
-    }, []);
-
-    const renderContent = () => {
-        if (loading) {
-            return (
-                <div className="space-y-3">
-                    {[...Array(3)].map((_, i) => (
-                        <div key={i} className="bg-slate-700 p-3 rounded-md animate-pulse flex justify-between items-center">
-                            <div className="h-4 bg-slate-600 rounded w-3/4"></div>
-                            <div className="h-4 bg-slate-600 rounded w-8"></div>
-                        </div>
-                    ))}
-                </div>
-            );
-        }
-        if (scores.length === 0) return <p className="text-center text-gray-400">Aucun match en direct.</p>;
-        return (
-            <div className="space-y-3">
-                {scores.slice(0, 5).map(score => {
-                    let timeDisplay = score.status.description.toLowerCase() === 'halftime' ? 'MT' : score.status.description;
-                    return (
-                        <div key={score.id} className="text-sm bg-slate-700 p-3 rounded-md flex justify-between items-center">
-                            <div className="text-white truncate" title={`${score.homeTeam.name} vs ${score.awayTeam.name}`}>
-                                <span className="font-medium">{score.homeTeam.name}</span>
-                                <span className="font-bold text-amber-400 mx-2">{score.homeScore.current} - {score.awayScore.current}</span>
-                                <span className="font-medium">{score.awayTeam.name}</span>
-                            </div>
-                            <div className="text-red-400 font-bold flex-shrink-0 ml-2">{timeDisplay}</div>
-                        </div>
-                    );
-                })}
-            </div>
-        );
-    };
-
-    return (
-        <div className="bg-slate-800 p-4 rounded-lg">
-            <h3 className="text-xl font-bold flex items-center text-white mb-4"><span className="material-icons text-red-500 mr-2 animate-pulse">online_prediction</span>Livescores</h3>
-            {renderContent()}
-        </div>
-    );
-};
 
 const FeaturedNews: React.FC = () => {
     const navigate = useNavigate();
     const newsItem = { title: "La CAN 2025 reportée ?", category: "Football Africain", imageUrl: "https://picsum.photos/seed/can2025/600/400" };
 
     return (
-        <div className="bg-slate-800 p-4 rounded-lg flex flex-col">
-            <h3 className="text-xl font-bold flex items-center mb-4 text-white"><span className="material-icons text-amber-400 mr-2">feed</span>À la une</h3>
-            <div className="relative rounded-lg overflow-hidden flex-grow min-h-[150px]">
+        <div className="bg-slate-800 p-4 sm:p-6 rounded-lg flex flex-col">
+            <h3 className="text-xl sm:text-2xl font-bold flex items-center mb-4 text-white"><span className="material-icons text-amber-400 mr-2">feed</span>À la une</h3>
+            <div className="relative rounded-lg overflow-hidden flex-grow min-h-[200px]">
                 <img src={newsItem.imageUrl} alt={newsItem.title} className="absolute w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-4 text-white w-full">
                     <span className="text-xs font-semibold bg-amber-400 text-slate-900 py-1 px-2 rounded-full">{newsItem.category}</span>
-                    <h4 className="mt-2 font-bold text-base">{newsItem.title}</h4>
+                    <h4 className="mt-2 font-bold text-lg sm:text-xl">{newsItem.title}</h4>
                 </div>
             </div>
-            <button onClick={() => navigate('/actualite')} className="mt-4 w-full bg-amber-400 text-slate-900 font-bold py-2.5 px-4 rounded-md hover:bg-amber-300 transition-colors flex items-center justify-center">
+            <button onClick={() => navigate('/actualite')} className="mt-4 w-full bg-amber-400 text-slate-900 font-bold py-3 px-4 rounded-md hover:bg-amber-300 transition-colors flex items-center justify-center">
                 Lire plus<span className="material-icons ml-2 text-lg">arrow_forward</span>
             </button>
         </div>
@@ -142,17 +47,17 @@ const FeaturedPredictions: React.FC = () => {
     const formatPrediction = (p: string) => ({ '1': 'Victoire Domicile', 'X': 'Nul', '2': 'Victoire Extérieur' }[p] || p);
 
     return (
-        <div className="bg-slate-800 p-6 rounded-lg">
-            <h3 className="text-2xl font-bold text-white mb-4 flex items-center"><span className="material-icons text-amber-400 mr-2">insights</span>Nos derniers pronostics</h3>
+        <div className="bg-slate-800 p-4 sm:p-6 rounded-lg">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center"><span className="material-icons text-amber-400 mr-2">insights</span>Nos derniers pronostics</h3>
             {loading ? <p>Chargement...</p> : (
                 <div className="space-y-4">
                     {predictions.map(p => (
-                        <div key={p.id} className="bg-slate-700 p-4 rounded-md flex justify-between items-center">
-                            <div>
+                        <div key={p.id} className="bg-slate-700 p-4 rounded-md flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                            <div className="mb-2 sm:mb-0">
                                 <p className="text-xs text-gray-400">{p.league} • {p.time}</p>
-                                <p className="font-bold text-white">{p.teamA} vs {p.teamB}</p>
+                                <p className="font-bold text-white text-base sm:text-lg">{p.teamA} vs {p.teamB}</p>
                             </div>
-                            <span className="bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">{formatPrediction(p.prediction)}</span>
+                            <span className="bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full self-start sm:self-center">{formatPrediction(p.prediction)}</span>
                         </div>
                     ))}
                 </div>
@@ -173,13 +78,13 @@ const FeaturedGames: React.FC = () => {
             {featuredGames.map(game => (
                 <div key={game.name} className="rounded-lg shadow-2xl overflow-hidden text-white relative bg-cover bg-center min-h-[350px] flex items-center justify-center text-center" style={{ backgroundImage: `url(${game.image})` }}>
                     <div className="absolute inset-0 bg-black/70 z-0"></div>
-                    <div className="relative z-10 p-8 flex flex-col items-center">
-                        <img src={game.logo} alt={`${game.bookmaker} logo`} className="h-14 w-14 object-contain rounded-full border-2 border-white shadow mb-2 bg-white" />
-                        <h3 className="text-3xl md:text-4xl font-extrabold mt-4 mb-3">{game.name}</h3>
-                        <p className="text-gray-300 mb-6 max-w-xl mx-auto">{game.description}</p>
-                        <div className="flex gap-3">
-                            <a href={game.playLink} className="bg-green-500 text-white font-bold py-3 px-6 rounded-md hover:bg-green-600 transition-colors">Jouer à {game.name}</a>
-                            <button onClick={() => navigate('/jeux')} className="bg-amber-400 text-slate-900 font-bold py-3 px-6 rounded-md hover:bg-amber-300 transition-colors">Voir plus de jeux</button>
+                    <div className="relative z-10 p-4 sm:p-8 flex flex-col items-center">
+                        <img src={game.logo} alt={`${game.bookmaker} logo`} className="h-12 w-12 sm:h-14 sm:w-14 object-contain rounded-full border-2 border-white shadow mb-2 bg-white" />
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mt-4 mb-3">{game.name}</h3>
+                        <p className="text-gray-300 mb-6 max-w-xl mx-auto text-sm sm:text-base">{game.description}</p>
+                        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                            <a href={game.playLink} className="bg-green-500 text-white font-bold py-3 px-6 rounded-md hover:bg-green-600 transition-colors w-full sm:w-auto">Jouer à {game.name}</a>
+                            <button onClick={() => navigate('/jeux')} className="bg-amber-400 text-slate-900 font-bold py-3 px-6 rounded-md hover:bg-amber-300 transition-colors w-full sm:w-auto">Voir plus de jeux</button>
                         </div>
                     </div>
                 </div>
@@ -193,13 +98,10 @@ const HomePage: React.FC = () => {
   const featuredBookmakers = BOOKMAKERS.slice(0, 4);
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 my-8">
       <section className="bg-gray-100 pt-8 pb-4"><OfferSlider /></section>
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Livescore />
-            <FeaturedNews />
-        </div>
+        <FeaturedNews />
       </section>
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">

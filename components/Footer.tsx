@@ -17,14 +17,13 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
     return (
         <footer className="bg-slate-800 text-gray-300 pt-16 pb-8">
             <div className="container mx-auto px-6 lg:px-8">
-                {/* Partners section */}
                 <div>
                     <h3 className="text-xl font-bold text-white text-center mb-8">Nos Partenaires</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {BOOKMAKERS.map(bookmaker => (
-                            <div key={bookmaker.name}>
+                            <div key={bookmaker.name} className="text-center">
                                 <img src={bookmaker.logo} alt={`${bookmaker.name} logo`} className="h-12 mx-auto mb-6 object-contain" />
-                                <ul className="space-y-3 text-sm w-fit mx-auto text-left">
+                                <ul className="space-y-3 text-sm">
                                     <li>
                                         <a href={bookmaker.appLink} className="inline-flex items-center text-gray-400 hover:text-amber-400 transition-colors">
                                             <span className="material-icons text-lg mr-2">download</span>
@@ -65,15 +64,12 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
                     </div>
                 </div>
 
-                {/* About & Legal section */}
-                <div className="mt-12 border-t border-slate-700 pt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {/* Column 1: About */}
+                <div className="mt-12 border-t border-slate-700 pt-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                     <div>
                         <h2 className="text-xl font-bold text-white mb-4">Leader<span className="text-amber-400">bets</span></h2>
                         <p className="text-sm">Votre guide n°1 pour les paris sportifs en Afrique. Comparez les meilleurs bonus et codes promo.</p>
                     </div>
                     
-                    {/* Column 2: Information */}
                     <div>
                         <h3 className="font-semibold text-white mb-4">Support & Légal</h3>
                         <ul className="space-y-2 text-sm">
@@ -97,8 +93,7 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
                         </ul>
                     </div>
 
-                    {/* Column 3: Socials */}
-                    <div className="flex flex-col items-end justify-end">
+                    <div className="flex flex-col items-center md:items-end">
                         <h3 className="font-semibold text-white mb-4 uppercase">RETROUVEZ NOUS AUSSI SUR :</h3>
                         <div className="flex space-x-4">
                             {socialLinks.map(social => (
@@ -110,7 +105,6 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
                     </div>
                 </div>
 
-                {/* Responsible Gaming */}
                 <div className="mt-10 border-t border-slate-700 pt-8">
                     <div className="bg-slate-900/50 p-4 rounded-lg text-center">
                         <h3 className="font-semibold text-white mb-2 flex items-center justify-center">
@@ -121,7 +115,6 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
                     </div>
                 </div>
 
-                {/* Copyright */}
                 <div className="mt-8 pt-6 text-center text-sm border-t border-slate-700">
                     <p>&copy; {new Date().getFullYear()} Leaderbets.net. Tous droits réservés.</p>
                 </div>

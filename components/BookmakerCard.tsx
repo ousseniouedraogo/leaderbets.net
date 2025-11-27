@@ -18,13 +18,13 @@ const BookmakerCard: React.FC<BookmakerCardProps> = ({ bookmaker }) => {
 
   return (
     <div className="bg-slate-800 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 border border-slate-700">
-      <div className="p-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <img src={bookmaker.logo} alt={`${bookmaker.name} logo`} className="h-12 w-12 object-contain" />
-            <h3 className="text-2xl font-bold ml-4 text-white">{bookmaker.name}</h3>
+      <div className="p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between sm:space-x-4">
+          <div className="flex items-center mb-4 sm:mb-0">
+            <img src={bookmaker.logo} alt={`${bookmaker.name} logo`} className="h-10 w-10 sm:h-12 sm:w-12 object-contain" />
+            <h3 className="text-xl sm:text-2xl font-bold ml-4 text-white">{bookmaker.name}</h3>
           </div>
-          <div className="flex space-x-2">
+          <div className="flex space-x-2 self-start sm:self-center">
             {bookmaker.popular && <div className="text-xs bg-red-600 text-white font-bold py-1 px-2 rounded-full">Populaire</div>}
             {bookmaker.bestChoice && <div className="text-xs bg-amber-400 text-slate-900 font-bold py-1 px-2 rounded-full">Meilleur Choix</div>}
           </div>
@@ -32,7 +32,7 @@ const BookmakerCard: React.FC<BookmakerCardProps> = ({ bookmaker }) => {
         
         <div className="mt-4 bg-slate-700 p-4 rounded-lg text-center">
           <p className="text-gray-300 text-sm">BONUS DE BIENVENUE</p>
-          <p className="text-amber-400 font-extrabold text-2xl">{bookmaker.bonus}</p>
+          <p className="text-amber-400 font-extrabold text-2xl sm:text-3xl">{bookmaker.bonus}</p>
         </div>
 
         <div className="mt-4">
