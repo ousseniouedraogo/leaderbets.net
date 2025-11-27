@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Ignorer les fichiers et dossiers existants (images, CSS, JS, etc.)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Tout le reste → rediriger vers index.html sans changer l'URL
+RewriteRule ^ index.html [L]
